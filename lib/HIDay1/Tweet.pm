@@ -19,7 +19,8 @@ sub new {
 sub message {
     my $self = shift;
 
-    return $self->{_message} //= $self->{author}.': '.$self->{body};
+    # deletedなら本文が帰ってこない
+    return $self->{deleted} ? '' : ( $self->{_message} //= $self->{author}.': '.$self->{body} );
 }
 
 sub author {
